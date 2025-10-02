@@ -64,6 +64,10 @@ This project is built with:
 
 Simply open [Lovable](https://lovable.dev/projects/67c5dd2c-d383-4fcf-b979-cc2c7be735c2) and click on Share -> Publish.
 
+### Note for Vercel deployments
+
+This project uses client-side routing. To avoid 404/NOT_FOUND when users navigate directly to a route like `/portfolio`, we include `vercel.json` with a rewrite that serves `index.html` for all routes.
+
 ## Can I connect a custom domain to my Lovable project?
 
 Yes, you can!
