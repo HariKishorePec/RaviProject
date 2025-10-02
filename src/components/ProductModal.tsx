@@ -22,37 +22,40 @@ const ProductModal = ({ product, open, onOpenChange }: ProductModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[60vw] max-h-[60vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-3 text-2xl">
-            {product.title}
-            <Badge variant="secondary" className="bg-primary/10 text-primary">
-              {product.category}
-            </Badge>
-          </DialogTitle>
-        </DialogHeader>
-        
-        <div className="space-y-6">
-          <div className="aspect-video w-full bg-secondary/50 rounded-xl overflow-hidden">
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-full h-full object-cover"
-            />
+      {/*
+        Desktop: 70% width & height (approx), using max-w/height utilities.
+        Mobile: 90% width & height.
+        Layout: on md+ use two-column grid with image left and content right (centered vertically).
+        Mobile: stack, description scrollable and button sticky to bottom.
+      */}
+      <DialogContent className="w-[90vw] h-[90vh] md:w-[70vw] md:h-[70vh] p-0 bg-transparent">
+        <div className="bg-card rounded-2xl shadow-[var(--shadow-card)] h-full overflow-hidden flex flex-col">
+          {/* Image section - keep image on top for desktop like before */}
+          <div className="w-full h-56 md:h-72 bg-secondary/50 overflow-hidden">
+            <img src={product.image} alt={product.title} className="w-full h-full object-cover" />
           </div>
-          
-          <div className="space-y-4">
-            <p className="text-muted-foreground leading-relaxed">
-              {product.fullDescription}
-            </p>
-            
-            <Button 
-              onClick={handleGetQuote}
-              size="lg" 
-              className="w-full sm:w-auto"
-            >
-              Get Quote
-            </Button>
+
+          {/* Content section */}
+          <div className="flex-1 flex flex-col">
+            <div className="p-6 md:p-8 flex-1 overflow-auto">
+              <div className="flex items-start justify-between gap-3 mb-4">
+                <h3 className="text-2xl font-semibold">{product.title}</h3>
+                <Badge variant="secondary" className="bg-primary/10 text-primary">
+                  {product.category}
+                </Badge>
+              </div>
+
+              <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">{product.fullDescription}</p>
+            </div>
+
+            {/* Button area - sticks to bottom visually on mobile; on desktop it appears below the description as before */}
+            <div className="p-4 md:p-6 border-t border-border bg-card">
+              <div className="max-w-full flex justify-end">
+                <Button onClick={handleGetQuote} size="lg" className="w-full md:w-auto">
+                  Get Quote
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </DialogContent>
