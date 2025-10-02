@@ -48,6 +48,12 @@ const ProductModal = ({ product, open, onOpenChange }: ProductModalProps) => {
                 </div>
 
                 <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">{product.fullDescription}</p>
+                {/* Instruction: show product id and ask user to mention it */}
+                <div className="mt-4">
+                  <p className="text-sm mt-1 font-medium" title="Please mention this product id while reaching us.">
+                    Product Id: <span className="font-bold">{product.id}</span>
+                  </p>
+                </div>
               </div>
 
               {/* Button area - sticks to bottom visually on mobile; on desktop it appears below the description as before */}
