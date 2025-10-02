@@ -27,17 +27,10 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Desktop / Tablet logo */}
-          <Link to="/" className="hidden sm:block text-2xl font-bold text-primary">
+          {/* Brand / Logo - visible on all sizes (left) */}
+          <Link to="/" className="text-2xl font-bold text-primary">
             EliteStore
           </Link>
-
-          {/* Mobile: show hamburger instead of short logo */}
-          <div className="sm:hidden">
-            <button aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((s) => !s)} className="p-2 rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-              {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center space-x-1">
@@ -53,7 +46,12 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* Mobile: hidden icons removed; menu handled by drawer below */}
+          {/* Mobile: hamburger on the right (same row as brand) */}
+          <div className="sm:hidden">
+            <button aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen((s) => !s)} className="p-2 rounded-md text-foreground focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+              {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
